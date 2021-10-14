@@ -49,9 +49,16 @@ class  Counter extends Component {
               my counter */}
               <button 
               onClick={this.handleIncrement} 
-              className="btn btn-secondary btn-sm">
+              className="btn btn-secondary btn-sm m-2">
               Increment
               </button>
+{/* Here I am adding a button that triggers a Delete method on click. 
+The component that owns a piece of the state should be the one modifying it. In this particular case,
+the piece of the state that I want to delete is owned by the counters component, so Counters should be the component
+modifying the value (deleting it). To solve this problem and allow the state to be modified through the Counter component, it has to
+raise an event. onDelete (convention for naming events). So the Counter component raises the event, but the Counters component handles it 
+(therefore the method is implemented there, but passed to the Counter component via props). */}
+              <button onClick={() => this.props.onDelete(this.props.id)} className="btn btn-danger btn-sm m2">Delete</button>
             </div>
         );
     }
